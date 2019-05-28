@@ -1,4 +1,5 @@
 import * as React from "react";
+import connector from "../helper/connector";
 
 class Header extends React.Component {
     constructor(props) {
@@ -30,7 +31,9 @@ class Header extends React.Component {
 
                 </div>
                 <div className="headerCTAContainer">
-                    <button>Check all</button>
+                    <button onClick={() => connector.checkAll(function () {
+                        console.log('Yeah');
+                    })}>Check all</button>
                 </div>
             </div>
         );

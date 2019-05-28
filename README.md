@@ -14,6 +14,7 @@ A small NodeJS image comparison program with a straightforward UI and an API. It
 4. Server-side rendering  
 5. Refactor package.json
 6. Update Favicon
+7. Check fetch dependency in package.json
 
 ## Installation
 
