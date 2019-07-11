@@ -92,7 +92,16 @@ Table.prototype.bindEvents = function () {
 				});
 			});
 		});
-	});
+    });
+
+    this.$container.on('click', 'button[data-action=compareImages]', function () {
+        var $this = $(this);
+        var $compareImages = $('#markedAreasRegion');
+        var referenceImgPath = that.__sanitizeImagePaths($this.data('image-reference'));
+        var newImgPath = that.__sanitizeImagePaths($this.data('image-new'));
+
+		new CompareImages($compareImages).show(referenceImgPath, newImgPath);
+    });
 
     // Bind add new image to reference image action to add button
     this.$container.on('click', 'button[data-action=add]', function () {
@@ -303,11 +312,10 @@ Table.prototype.__createDescriptionRow = function (imageSet) {
     // Disable button if no image exists
     if(imageSet.referenceImage.path) {
         desRowContent += '<button data-id="' + imageSet.id + '" data-image="' + imageSet.referenceImage.path +  '" data-action="addIgnoreRegions">Modify Ignore Regions</button>';
-		desRowContent += '<button data-id="' + imageSet.id + '" data-image="' + imageSet.referenceImage.path +  '" data-action="addCheckRegions">Modify Check Regions</button>';
-    } else {
-        desRowContent += '<button class="disabledButton" disabled data-id="' + imageSet.id + '" data-image="' + imageSet.referenceImage.path +  '" data-action="addIgnoreRegions">Modify Ignore Regions</button>';
-		desRowContent += '<button class="disabledButton" disabled data-id="' + imageSet.id + '" data-image="' + imageSet.referenceImage.path +  '" data-action="addCheckRegions">Modify Check Regions</button>';
+        desRowContent += '<button data-id="' + imageSet.id + '" data-image="' + imageSet.referenceImage.path +  '" data-action="addCheckRegions">Modify Check Regions</button>';
+        desRowContent += '<button data-image-reference="' + imageSet.referenceImage.path + '" data-image-new="' + imageSet.newImage.path + '" data-action="compareImages">Diff Images</button>';
     }
+
     desRowContent += '</td>';
 
     desRowContent += '<td role="newDescription">';
