@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // Set up routes
-app.use('/gui', guiRoutes);
+app.use('/', guiRoutes);
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
