@@ -132,7 +132,7 @@ Connector.prototype.assignImageSetToProject = function (imageSetId, projectIdFro
  * @param {Function} callback Called when the request is done. Has the data as parameter if the call was a success, else the message.
  * **/
 Connector.prototype.sendRequest = function (url, method, data, callback) {
-    var serverEndpoint = this.getServerEndpoint() + '/api' + url;
+    var serverEndpoint = this.getServerEndpoint() + 'api' + url;
 	data = data ? data : {};
     console.log('Attempting a request to ' + url + ' with method ' + method + ' and data ' + data);
 
@@ -169,8 +169,7 @@ Connector.prototype.sendRequest = function (url, method, data, callback) {
  * **/
 Connector.prototype.getServerEndpoint = function () {
     if(!localStorage.imageDiffServerEndpoint){
-        localStorage.imageDiffServerEndpoint = location.protocol
-            + '//' + location.hostname + (location.port ? ':' + location.port : '')
+        localStorage.imageDiffServerEndpoint = location.href
     }
 
     return localStorage.imageDiffServerEndpoint;
